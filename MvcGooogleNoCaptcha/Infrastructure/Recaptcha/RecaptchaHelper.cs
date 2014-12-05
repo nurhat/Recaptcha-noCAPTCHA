@@ -14,14 +14,14 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
         {
             get { return ConfigurationManager.AppSettings["RecaptchaJsHost"]; }
         }
-        public static string PublicKey
+        public static string RecaptchaPublicKey
         {
 
             get { return ConfigurationManager.AppSettings["RecaptchaPublicKey"]; }
         }
         public static MvcHtmlString GenerateCaptcha(this HtmlHelper helper, string id, string theme)
         {
-            if (string.IsNullOrEmpty(PublicKey))
+            if (string.IsNullOrEmpty(RecaptchaPublicKey))
             {
                 throw new ApplicationException("reCAPTCHA needs to be configured with a public key.");
             }
@@ -31,7 +31,7 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
             captchaBuilder.MergeAttribute("defer","");
             captchaBuilder.MergeAttribute("id", id);
             captchaBuilder.MergeAttribute("class", "g-recaptcha");
-            captchaBuilder.MergeAttribute("data-sitekey", PublicKey);
+            captchaBuilder.MergeAttribute("data-sitekey", RecaptchaPublicKey);
             if (!string.IsNullOrEmpty(theme))
             {
                 captchaBuilder.MergeAttribute("data-theme", theme);

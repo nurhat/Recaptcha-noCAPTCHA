@@ -3,9 +3,6 @@ using System;
 using System.Collections.Generic;
 namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
 {
-    /// <summary>
-    /// Encapsulates a response from reCAPTCHA web service.
-    /// </summary>
     public class RecaptchaResponse
     {
         public static readonly RecaptchaResponse RecaptchaInvalidServiceResponse = new RecaptchaResponse() { Success = false, ErrorCodes = { "Invalid_reCAPTCHA_Service_response" } };

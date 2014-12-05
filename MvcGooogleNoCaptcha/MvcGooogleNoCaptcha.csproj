@@ -119,7 +119,7 @@
     <Compile Include="Infrastructure\Recaptcha\RecaptchaHelper.cs" />
     <Compile Include="Infrastructure\Recaptcha\RecaptchaResponse.cs" />
     <Compile Include="Infrastructure\Recaptcha\RecaptchaValidator.cs" />
-    <Compile Include="Infrastructure\Recaptcha\RecaptchaValidatorAttribute.cs" />
+    <Compile Include="Infrastructure\Recaptcha\RecaptchaValidationActionFilterAttribute.cs" />
     <Compile Include="Models\Home\IndexModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

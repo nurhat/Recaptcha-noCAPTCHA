@@ -25,9 +25,8 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
 
         public RecaptchaResponse Validate(string privateKey, string remoteIP, string recaptchaResponseFieldValue)
         {
-            this.CheckNotNull(privateKey, "PrivateKey");
-            this.CheckNotNull(remoteIP, "RemoteIp");
-            this.CheckNotNull(recaptchaResponseFieldValue, "Response");
+            this.CheckNotNull(privateKey, "privateKey");
+            this.CheckNotNull(recaptchaResponseFieldValue, "recaptchaResponseFieldValue");
 
             if (string.IsNullOrEmpty(recaptchaResponseFieldValue))
             {
@@ -44,8 +43,7 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(serviceUri);
             request.Proxy = proxy;
             request.Timeout = 30 * 1000;
-            request.Method = "GET";
-            request.UserAgent = "reCAPTCHA/ASP.NET";
+            request.Method = "GET"; 
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = 0;
 

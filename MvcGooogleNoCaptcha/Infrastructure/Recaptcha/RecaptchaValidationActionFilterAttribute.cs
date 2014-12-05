@@ -8,10 +8,10 @@ using System.Web.Mvc;
 namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
 {
     [AttributeUsage(AttributeTargets.Method, Inherited = true, AllowMultiple = false)]
-    public sealed class RecaptchaValidatorAttribute : ActionFilterAttribute
+    public sealed class RecaptchaValidationActionFilterAttribute : ActionFilterAttribute
     {
 
-        public static string PrivateKey
+        public static string RecaptchaPrivateKey
         {
             get { return ConfigurationManager.AppSettings["RecaptchaPrivateKey"]; }
         }
@@ -20,26 +20,26 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
             get { return ConfigurationManager.AppSettings["RecaptchaResponseFieldKey"]; }
         }
 
-        public static bool SkipRecaptcha
+        public static bool RecaptchaSkipValidation
         {
             get
             {
-                bool skipRecaptcha = false;
-                bool.TryParse(ConfigurationManager.AppSettings["RecaptchaSkipValidation"], out skipRecaptcha);
-                return skipRecaptcha;
+                bool recaptchaSkipValidation = false;
+                bool.TryParse(ConfigurationManager.AppSettings["RecaptchaSkipValidation"], out recaptchaSkipValidation);
+                return recaptchaSkipValidation;
             }
         }
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (SkipRecaptcha)
+            if (RecaptchaSkipValidation)
             {
                 filterContext.ActionParameters["recaptchaValid"] = true;
             }
             else
             {
-                if (string.IsNullOrEmpty(PrivateKey))
+                if (string.IsNullOrEmpty(RecaptchaPrivateKey))
                 {
-                    throw new ApplicationException("reCAPTCHA needs to be configured with a private key.");
+                    throw new ApplicationException("reCAPTCHA  private key is missing");
                 }
 
                 RecaptchaValidator validator = new Recaptcha.RecaptchaValidator();
@@ -47,7 +47,7 @@ namespace MvcGooogleNoCaptcha.Infrastructure.Recaptcha
                 var remoteIP = filterContext.HttpContext.Request.UserHostAddress;
                 var recaptchaResponseFieldValue = filterContext.HttpContext.Request.Params[RecaptchaResponseFieldKey];
 
-                var recaptchaResponse = validator.Validate(PrivateKey, remoteIP, recaptchaResponseFieldValue);
+                var recaptchaResponse = validator.Validate(RecaptchaPrivateKey, remoteIP, recaptchaResponseFieldValue);
 
                 // this will push the result values into a parameter in our Action
                 filterContext.ActionParameters["recaptchaValid"] = recaptchaResponse.Success;
