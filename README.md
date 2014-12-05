@@ -1,7 +1,7 @@
-MvcGooogleNoCaptcha
+Recaptcha-noCAPTCHA
 ===================
 
-Sample mvc project for google nocaptcha recaptcha utility
+Sample C# MVC application for Google's new version of reCAPTCHA called noCAPTCHA — Edit
 
 Edit following configuration elements in web.config before starting the project.
 
