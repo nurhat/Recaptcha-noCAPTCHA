@@ -1,7 +1,7 @@
 Recaptcha-noCAPTCHA
 ===================
 
-Sample C# MVC application for Google's new version of reCAPTCHA called noCAPTCHA — Edit
+Sample C# MVC application for Google's new version of reCAPTCHA called noCAPTCHA
 
 Edit following configuration elements in web.config before starting the project.
 
