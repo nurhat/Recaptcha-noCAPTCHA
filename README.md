@@ -1,4 +1,4 @@
-MvcGooogleNoCaptcha
+Recaptcha-noCAPTCHA
 ===================
 
 Sample mvc project for google nocaptcha recaptcha utility
