@@ -1,0 +1,32 @@
+﻿@model MvcGooogleNoCaptcha.Models.IndexModel
+@using MvcGooogleNoCaptcha.Infrastructure.Recaptcha;
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+@using (Html.BeginForm("Index", "Home"))
+{
+    <div style="color:red">
+        @Html.ValidationSummary()
+    </div>
+    <div>
+        <label>@Html.LabelFor(x => x.Name)</label>
+        @Html.TextBoxFor(x => x.Name)
+    </div>
+    <div>
+        <label>@Html.LabelFor(x => x.Surname)</label>
+        @Html.TextBoxFor(x => x.Surname)
+    </div>
+
+    <div>
+        @Html.GenerateCaptcha("recaptcha", "light")
+    </div>
+    <div>
+        <input type="submit" name="confirm" id="confirm" value="confirm" />
+    </div>
+}
